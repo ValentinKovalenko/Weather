@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.card1 {
+  width: 350px;
+}
+
+.p1 {
+  font-size: 12px;
+}
+.strong1 {
+  font-size: 30px;
+}
+.fon {
+  background-color: #FFF1FE;
+}
+ button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  outline:none;
+}
