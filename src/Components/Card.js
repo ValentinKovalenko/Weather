@@ -1,11 +1,14 @@
 import React from 'react'
 import {useState} from "react";
 import dayjs from "dayjs";
-
+import {FormattedMessage} from "react-intl";
 
 const Card = ({result, listResult}) => {
 
-    const time = dayjs(new Date()).format('ddd, DD MMMM, hh:mm')
+    /*const data = listResult.hourly.map(value => {
+
+    })*/
+    const time = dayjs(new Date()).format('ddd, DD MMMM, HH:mm')
     const temp = result?.main.temp
     const humidity = result?.main.humidity
     const pressure = result?.main.pressure
@@ -42,17 +45,18 @@ const Card = ({result, listResult}) => {
                                 <div className="col-6">
                                     <p className='my-0'><strong className='strong1'>{temperature}</strong>
                                         <sup>
-                                            <button onClick={getCelsius}>&deg;C</button>
+                                            <button onClick={getCelsius}>&deg;C</button> |
                                             <button onClick={getFahrenheit}>&deg;F</button>
                                         </sup>
                                     </p>
-                                    <p className="text-muted p1">feels Like: {feelsTemperature}</p>
+                                    <p className="text-muted p1"><FormattedMessage id='feelsLike' defaultMessage='feels Like'/>: {feelsTemperature}</p>
                                 </div>
                                 <div className='col-6'>
-                                    <p className='p1 my-0'> Wind:<span className="text-primary"> {wind} m/c</span></p>
-                                    <p className='p1 my-0'>Humidity: <span className="text-primary">{humidity}%</span>
+                                    <p className='p1 my-0'>
+                                       <FormattedMessage id='wind' defaultMessage='Wind' /> :<span className="text-primary"> {wind} m/c</span></p>
+                                    <p className='p1 my-0'><FormattedMessage id='humidity' defaultMessage='Humidity'/>: <span className="text-primary">{humidity}%</span>
                                     </p>
-                                    <p className='p1'>Pressure:<span className="text-primary"> {pressure}Pa</span></p>
+                                    <p className='p1'><FormattedMessage id='pressure' defaultMessage='Pressure'/>:<span className="text-primary"> {pressure}Pa</span></p>
                                 </div>
                             </div>
                         </div>

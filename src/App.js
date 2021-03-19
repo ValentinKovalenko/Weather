@@ -1,20 +1,59 @@
 import './App.css';
 import Main from "./Components/Main";
 import Card from "./Components/Card";
-import {useState} from "react";
+import React, {useState} from "react";
+import {IntlProvider} from 'react-intl'
+
 
 
 const API = 'e36f24144fe95edcc5c9d2fc4c72e7a2'
 
 
 function App() {
+
+    const messages = {
+        en: {
+            wind: 'Wind',
+            feelsLike: 'feels Like',
+            humidity: 'Humidity',
+            pressure: 'Pressure',
+            add: 'Add',
+            cityName: 'City name...',
+            city: '{city}'
+        },
+        ua: {
+            wind: 'Вітер',
+            feelsLike: 'відчувається, як',
+            humidity: 'Вологість',
+            pressure: 'Тиск',
+            add: 'Додати',
+            cityName: 'Введіть місто...',
+            city: '{city}'
+        },
+        ru: {
+            wind: 'Ветер',
+            feelsLike: 'ощущается, как',
+            humidity: 'Влажность',
+            pressure: 'Давление',
+            add: 'Добавить',
+            cityName: 'Ввдите город...',
+            city: '{city}'
+
+        }
+    }
+
+
     const [city, setCity] = useState()
 
     const [listResult, setListResult] = useState()
 
     const [result, setResult] = useState()
 
-    const [lang, setLang] = useState('en')
+    const [locale, setLocale] = useState("en");
+
+    const handleSelect = e => {
+        setLocale(e.target.value);
+    };
 
     const getPeriodWeather = async (res) => {
         const {lat, lon} = res.coord
@@ -28,10 +67,7 @@ function App() {
         console.log(list)
     }
 
-    const changeLang = (e) => {
-        setLang(e)
-        console.log(e)
-    }
+
 
     const getWeather = async (e) => {
         e.preventDefault()
@@ -49,13 +85,15 @@ function App() {
 
 
     return (
+        <IntlProvider locale={locale} messages={messages[locale]}>
         <div>
-            <Main getWeather={getWeather} changeLang={changeLang}
+            <Main getWeather={getWeather} handleSelect={handleSelect}
             />
             {city ? <Card result={result}
             listResult = {listResult}
             /> : null}
         </div>
+        </IntlProvider>
     );
 }
 

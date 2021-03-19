@@ -1,7 +1,8 @@
 import React  from 'react'
+import {FormattedMessage} from "react-intl";
 
 
-const Main = ({ getWeather, changeLang }) => {
+const Main = ({ getWeather, handleSelect }) => {
 
 
     return (
@@ -12,11 +13,10 @@ const Main = ({ getWeather, changeLang }) => {
                     name='city'
                     type="text"
                     placeholder="City name..."
-                    
                     />
-                    <button className="btn btn-outline-success" type="submit">Add</button>
+                    <button className="btn btn-outline-success" type="submit"><FormattedMessage id='add' defaultMessage='Add'/></button>
                 </form>
-                <select onClick={changeLang}>
+                <select onClick={handleSelect}>
                     <option  value="en">EN</option>
                     <option  value="ua">UA</option>
                     <option  value="ru">RU</option>
